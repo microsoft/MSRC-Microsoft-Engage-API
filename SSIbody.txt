@@ -1,0 +1,28 @@
+{
+"reporterInfo": { 
+    "reporterEmail": "you@yourOrganization.com",
+    "reporterName": "Your Name", 
+    "reporterPhone": "Your PhoneNum", 
+    "reporterOrg": "Your Organization", 
+    "discloseEmail": "TRUE", 
+    "reporterNotes": ""
+  },
+  "issues": [
+	{
+		"issue": {
+			"batchID": "0001",
+			"relatedCases": "none",
+			"issueType": "injection",
+			"issueNotes": "MSRC test case",
+			"sampleType": "string",
+			"url": "yourUrl.com",
+			"sample": "YourSample",
+			"piiPresent": "TRUE",
+			"piiDescription": "PiiDescription",
+			"publiclyKnown": "TRUE",
+			"publicUrl": "url",
+			"isWebApp": "TRUE"
+			}
+	}
+]
+}
