@@ -15,7 +15,7 @@ The Security Updates API requires an API key. To obtain an API key please visit 
 NOTE: Currently generating api keys requires an @outlook.com, @live.com, or @microsoft.com email address. If you do not have one of these email addresses, you can create a personal outlook account to access this service while we investigate this issue.
 
 # Change Log
-Uploaded code C#, Python and Ruby code samples as well as CARS Swagger file.
+Uploaded C#, Python and Ruby code samples as well as CARS Swagger file.
 
 # Contributing
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
