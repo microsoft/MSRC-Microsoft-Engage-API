@@ -1,0 +1,1 @@
+The sample code serves as an example on how to interact with the MSRC Cloud Abuse Reporting Schema through C#, Python, Ruby and Powershell. You will need to log into the MSRC Portal and obtain an API key.
