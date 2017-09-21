@@ -8,7 +8,7 @@ The sample code serves as an example on how to interact with the MSRC Cloud Abus
 To use the C# example code you will need to copy the code into your project or solution because the C# example code file is not a runnable solution.
 
 <h3>Powershell</h3>
-To use the powershell module, download the entire module and enter your API Key and body then run it via command line, Powershell console, or by running the build file as Powershell.
+To use the powershell module, download the entire module and enter your API Key and body while running it via command line, Powershell console, or by running the build file as Powershell.
 
 <h3>Python</h3>
 To use the Python code example you will need to copy and paste the Ruby code into your project because the Python example code file is not runnable as-is.
