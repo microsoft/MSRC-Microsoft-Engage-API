@@ -1,68 +1,142 @@
-{
-  "swagger" : "2.0",
-  "info" : {
-    "version" : "1.0",
-    "title" : "MSRC Engage API"
-  },
-  "host" : "api.msrc.microsoft.com",
-  "basePath" : "/engage",
-  "schemes" : [ "https" ],
-  "security" : [ {
-    "apiKeyHeader" : [ ]
-  }, {
-    "apiKeyQuery" : [ ]
-  } ],
-  "paths" : {
-    "/pentest" : {
-      "post" : {
-        "description" : "An API for submitting Azure Service customer-driven penetration testing notifications in a derivative of the CARS (Cloud Abuse Reporting Schema) as JSON",
-        "operationId" : "Pentest Notification",
-        "consumes" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Derivation of the Cloud Abuse Reporting Schema",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/Body"
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: MSRC Engage API
+host: api.msrc.microsoft.com
+basePath: /engage
+schemes:
+  - https
+security:
+  - apiKeyHeader: []
+  - apiKeyQuery: []
+paths:
+  /pentest:
+    post:
+      description: An API for submitting Azure Service customer-driven penetration testing notifications in a derivative of the CARS (Cloud Abuse Reporting Schema) as JSON
+      operationId: Pentest Notification
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Derivation of the Cloud Abuse Reporting Schema
+          required: false
+          schema:
+            $ref: '#/definitions/Body'
+      responses:
+        '200':
+          description: Success
+  /cars:
+    post:
+      description: An API for submitting Abuse or CERT reports in the CARS (Cloud Abuse Reporting Schema) as JSON
+      operationId: CERT Report
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Cloud Abuse Reporting Schema
+          required: false
+          schema:
+            example: |-
+              {
+                "reporterInfo": {
+                  "reporterEmail": "reporter_email@email.com",
+                  "reporterName": "John Smith",
+                  "reporterPhone": "555-555-5555",
+                  "reporterOrg": "Contoso",
+                  "discloseEmail": "TRUE||FALSE",
+                  "reporterNotes": "Sources are at liberty to elaborate on what their organization does if it's relevant to their reports as a whole."
+                },
+                "reports": [
+                  {
+                    "report": {
+                      "batchID": "Group/Campaign Identifier",
+                      "relatedCases": [ "ID", "ID", "..." ],
+                      "reportNotes": "This is a brief summary of what I have found...",
+                      "TLP": "AMBER||GREEN||WHITE",
+                      "disclosureNotes": "Sources are at liberty to specify additional intended limits of the sharing: these must be adhered to.",
+                      "threats":  [
+                        {
+                          "threat": {
+                            "threatType": "Activity||Content",
+                            "threatSubType": "CNC||FRAUD||DOS||SPAM||MALWARE||INTRUSION_ATTEMPT||PORT_SCAN||WEB_CRAWL||PHISHING||THREAT_TYPE_UNSPECIFIED",
+                            "sampleType":"Base64",
+                            "sourceIp": "1.1.1.1",
+                            "destinationIp": "2.2.2.2",
+                            "sourcePort": "PORT",
+                            "destinationPort": "PORT",
+                            "sourceUrl": "URL",
+                            "destinationUrl": "URL",
+                            "protocol": "PROTOCOL_NUMBER",
+                            "byteCount": "BYTES",
+                            "packetCount": "PACKETS",
+                            "date": "yyyy-mm-dd",
+                            "time": "00:00:00",
+                            "timeZone": "-0000",
+                            "sample": "logs of observed activity; must be of type specified above"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+      responses:
+        '200':
+          description: Success
+securityDefinitions:
+  apiKeyHeader:
+    type: apiKey
+    name: api-key
+    in: header
+  apiKeyQuery:
+    type: apiKey
+    name: subscription-key
+    in: query
+definitions:
+  Body:
+    example: |-
+      {
+        "reporterInfo": {
+          "reporterEmail": "reporter_email@email.com",
+          "reporterName": "John Smith",
+          "reporterPhone": "555-555-5555",
+          "reporterOrg": "Contoso",
+          "discloseEmail": "TRUE||FALSE",
+          "reporterNotes": "Sources are at liberty to elaborate on what their organization does if it's relevant to their reports as a whole."
+        },
+        "reports": [
+          {
+            "report": {
+              "batchID": "Group/Campaign Identifier",
+              "relatedCases": [ "ID", "ID", "..." ],
+              "reportNotes": "This is a brief summary of what I have found...",
+              "TLP": "AMBER||GREEN||WHITE",
+              "disclosureNotes": "Sources are at liberty to specify additional intended limits of the sharing: these must be adhered to.",
+              "threats":  [
+                {
+                  "threat": {
+                    "threatType": "Activity||Content",
+                    "threatSubType": "CNC||FRAUD||DOS||SPAM||MALWARE||INTRUSION_ATTEMPT||PORT_SCAN||WEB_CRAWL||PHISHING||THREAT_TYPE_UNSPECIFIED",
+                    "sampleType":"Base64",
+                    "sourceIp": "1.1.1.1",
+                    "destinationIp": "2.2.2.2",
+                    "sourcePort": "PORT",
+                    "destinationPort": "PORT",
+                    "sourceUrl": "URL",
+                    "destinationUrl": "URL",
+                    "protocol": "PROTOCOL_NUMBER",
+                    "byteCount": "BYTES",
+                    "packetCount": "PACKETS",
+                    "date": "yyyy-mm-dd",
+                    "time": "00:00:00",
+                    "timeZone": "-0000",
+                    "sample": "logs of observed activity; must be of type specified above"
+                  }
+                }
+              ]
+            }
           }
-        } ],
-        "responses" : { }
+        ]
       }
-    },
-    "/cars" : {
-      "post" : {
-        "description" : "An API for submitting Abuse or CERT reports in the CARS (Cloud Abuse Reporting Schema) as JSON",
-        "operationId" : "CERT Report",
-        "consumes" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "body",
-          "description" : "Cloud Abuse Reporting Schema",
-          "required" : false,
-          "schema" : {
-            "$ref" : "#/definitions/Body"
-          }
-        } ],
-        "responses" : { }
-      }
-    }
-  },
-  "securityDefinitions" : {
-    "apiKeyHeader" : {
-      "type" : "apiKey",
-      "name" : "api-key",
-      "in" : "header"
-    },
-    "apiKeyQuery" : {
-      "type" : "apiKey",
-      "name" : "subscription-key",
-      "in" : "query"
-    }
-  },
-  "definitions" : {
-    "Body" : {
-      "example" : "{\n  \"reporterInfo\": {\n    \"reporterEmail\": \"reporter_email@email.com\",\n    \"reporterName\": \"John Smith\",\n    \"reporterPhone\": \"555-555-5555\",\n    \"reporterOrg\": \"Contoso\",\n    \"discloseEmail\": \"TRUE||FALSE\",\n    \"reporterNotes\": \"Sources are at liberty to elaborate on what their organization does if it's relevant to their reports as a whole.\"\n  },\n  \"reports\": [\n    {\n      \"report\": {\n        \"batchID\": \"Group/Campaign Identifier\",\n        \"relatedCases\": [ \"ID\", \"ID\", \"...\" ],\n        \"reportNotes\": \"This is a brief summary of what I have found...\",\n        \"TLP\": \"AMBER||GREEN||WHITE\",\n        \"disclosureNotes\": \"Sources are at liberty to specify additional intended limits of the sharing: these must be adhered to.\",\n        \"threats\":  [\n          {\n            \"threat\": {\n              \"threatType\": \"Activity||Content\",\n              \"threatSubType\": \"CNC||FRAUD||DOS||SPAM||MALWARE||INTRUSION_ATTEMPT||PORT_SCAN||WEB_CRAWL||PHISHING||THREAT_TYPE_UNSPECIFIED\",\n              \"sampleType\":\"Base64\",\n              \"sourceIp\": \"1.1.1.1\",\n              \"destinationIp\": \"2.2.2.2\",\n              \"sourcePort\": \"PORT\",\n              \"destinationPort\": \"PORT\",\n              \"sourceUrl\": \"URL\",\n              \"destinationUrl\": \"URL\",\n              \"protocol\": \"PROTOCOL_NUMBER\",\n              \"byteCount\": \"BYTES\",\n              \"packetCount\": \"PACKETS\",\n              \"date\": \"yyyy-mm-dd\",\n              \"time\": \"00:00:00\",\n              \"timeZone\": \"-0000\",\n              \"sample\": \"logs of observed activity; must be of type specified above\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}"
-    }
-  }
-}
