@@ -17,6 +17,8 @@ NOTE: Currently generating api keys requires an @outlook.com, @live.com, or @mic
 # Change Log
 Uploaded C#, Python and Ruby code samples as well as CARS Swagger file.
 
+Updated swagger.json and added swagger.yaml.  Uploaded Powershell Module.
+
 # Contributing
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
