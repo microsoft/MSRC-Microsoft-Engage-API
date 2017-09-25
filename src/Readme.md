@@ -19,3 +19,18 @@ To use the Python code example you will need to copy and paste the Ruby code int
 
 <h3>Ruby</h3>
 To use the Ruby code example you will need to copy and paste the Ruby code into your project because the Ruby example code file is not runnable as-is.
+
+<h3>Curl</h3>
+To use the Curl code example you will need to copy and paste the Curl code into your project because the Curl example code file is not runnable as-is.
+
+<h3>Java</h3>
+To use the Java code example you will need to copy and paste the Java code into your project because the Java example code file is not runnable as-is.
+
+<h3>JavaScript</h3>
+To use the JavaScript code example you can copy the code into your text editor that runs JS (ex: VS Code) or you can download the file and run it using that text editor.
+
+<h3>Objective C</h3>
+To use the Objective C code example you will need to copy and paste the ObjC code into your project because the ObjC example code file is not runnable as-is.
+
+<h3>PHP</h3>
+To use the PHP code sample you can either copy and paste the code into an existing PHP pooject, or you can download and run the file as a PHP file with your IDE.
