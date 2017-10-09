@@ -3,12 +3,8 @@
 //You will need to insert your own api-key in order for it to post
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Script.Serialization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
