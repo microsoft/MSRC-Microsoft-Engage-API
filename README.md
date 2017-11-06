@@ -1,10 +1,10 @@
 
 
 # Welcome
-Microsoft provides APIs for an automation of submitting various security reports. [Security Updates Guide](https://portal.msrc.microsoft.com/en-us/engage/cars) is a great place to report Abuse, Penetration Testing activity or submit Service Security Issues.
+Microsoft provides APIs for an automation of submitting various security reports. The Engage API (https://portal.msrc.microsoft.com/en-us/developer) is a great place to report Abuse, Penetration Testing activity or submit Service Security Issues.
 
 This project contains sample code and documentation for the Microsoft 
-Engage API (https://portal.msrc.microsoft.com/en-us/engage/cars), including:
+Engage API (https://portal.msrc.microsoft.com/en-us/developer), including:
 
 1. <b>Abuse reports</b> originating from Microsoft Online Services, such as Microsoft Azure, Bing, Outlook, One Drive, and Office 365. This includes malicious network activity originating from a Microsoft IP addresses.
 2. Azure Service customer-driven <b>penetration testing notifications</b> in a derivative of the CARS (Cloud Abuse Reporting Schema) as JSON
