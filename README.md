@@ -1,7 +1,7 @@
 
 
 # Welcome
-Microsoft provides APIs for an automation of submitting various security reports. The Engage API (https://portal.msrc.microsoft.com/en-us/developer) is a great place to report Abuse, Penetration Testing activity or submit Service Security Issues.
+Microsoft provides APIs for an automation of submitting various security reports. The Engage API  is a great place to report Abuse, Penetration Testing activity or submit Service Security Issues.  The Portal (https://portal.msrc.microsoft.com/en-us/engage) is where individual reports should be submitted.  To submit bulk reports, you may waht to call the Engage API directly on the developer portal (https://portal.msrc.microsoft.com/en-us/developer).
 
 This project contains sample code and documentation for the Microsoft 
 Engage API (https://portal.msrc.microsoft.com/en-us/developer), including:
