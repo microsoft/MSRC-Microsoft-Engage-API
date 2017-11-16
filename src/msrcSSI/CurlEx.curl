@@ -1,0 +1,11 @@
+@ECHO OFF
+
+curl -v -X POST "https://api.msrc.microsoft.com/engagebeta/ssi"
+-H "Content-Type: "
+-H "Cache-Control: no-cache"
+-H "Ocp-Apim-Trace: "
+-H "api-key:  *******************"
+-H "Content-Type: application/json"
+-H "api-key: {subscription key}"
+
+--data-ascii "{body}" 
