@@ -7,7 +7,7 @@ Note that to use this API (and any of these samples), you will need to log into 
 <h2>Using the Code Samples</h2>
 
 <h3>C#</h3>
-To use the C# example code, you will need to copy the code into your project or solution because the C# example code file is not a runnable solution. Instructions for creating a new solution are included in the [tutorial](https://github.com/MSRC-Microsoft-Engage-API/src/msrcCars/CsharpExamples/C#Tutorial.docx).
+To use the C# example code, you will need to copy the code into your project or solution because the C# example code file is not a runnable solution. Instructions for creating a new solution are included in the tutorial.
 
 <h3>Powershell</h3>
 To use the PowerShell module, download the Powershell-Example-Code.Ps1 file and run it using a PowerShell console, command line, or by right-clicking on the file and selecting "Run With Powershell."  Then input your API key and the personalized JSON body that you filled out from the PowershellBody.txt file, and it will attempt to post to the MSRC Engage API.
