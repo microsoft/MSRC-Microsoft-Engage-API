@@ -1,4 +1,4 @@
-<h2>Overview</h2>
+<h2>SSI Overview</h2>
 
 Report security vulnerabilities in Microsoft products and services to the Microsoft Security Response Center (MSRC).
 Eligible submissions include, but are not limited to, vulnerabilities of the following types:
