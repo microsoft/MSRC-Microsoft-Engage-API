@@ -11,7 +11,7 @@ Engage API](https://portal.msrc.microsoft.com/en-us/developer). The *docs* folde
 - **SSI**: report Microsoft Service Security Issues, such as misconfigurations, vulnerabilities, and other security-related issues.
 
 # API Keys
-The Engage API requires an API key. To obtain one, please log into the [MSRC Portal](https://portal.msrc.microsoft.com/) and obtain the key from the Developer tab. Currently, generating an API key requires an @outlook.com, @live.com, or @microsoft.com email address.
+The Engage API requires an API key. To obtain one, please log into the [MSRC Portal](https://portal.msrc.microsoft.com/) with an @outlook.com, @live.com, or @microsoft.com email address and obtain the key from the Developer tab.
 
 # Change Log
 Uploaded C#, Python and Ruby code samples as well as CARS Swagger file.
