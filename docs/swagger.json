@@ -1,95 +1,152 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0",
-        "title": "MSRC Engage API"
+  "swagger": "2.0",
+  "info": {
+    "title": "MSRC Engage API",
+    "version": "1.0"
+  },
+  "host": "api.msrc.microsoft.com",
+  "basePath": "/engage",
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "apiKeyHeader": {
+      "type": "apiKey",
+      "name": "api-key",
+      "in": "header"
     },
-    "host": "api.msrc.microsoft.com",
-    "basePath": "/engage",
-    "schemes": [
-        "https"
-    ],
-    "security": [
-        {
-            "apiKeyHeader": []
-        },
-        {
-            "apiKeyQuery": []
-        }
-    ],
-    "paths": {
-        "/pentest": {
-            "post": {
-                "description": "An API for submitting Azure Service customer-driven penetration testing notifications in a derivative of the CARS (Cloud Abuse Reporting Schema) as JSON",
-                "operationId": "Pentest Notification",
-                "consumes": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Derivation of the Cloud Abuse Reporting Schema",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Body"
-                        }
-                    }
-                ],
-                "responses": {
-                    "202": {
-                        "description": "Accepted"
-                    },
-                    "400": {
-                        "description": "Bad Request"
-                    }
-                }
-            }
-        },
-        "/cars": {
-            "post": {
-                "description": "An API for submitting Abuse or CERT reports in the CARS (Cloud Abuse Reporting Schema) as JSON",
-                "operationId": "CERT Report",
-                "consumes": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Cloud Abuse Reporting Schema",
-                        "required": true,
-                        "schema": {
-                            "example": "{\n  \"reporterInfo\": {\n    \"reporterEmail\": \"reporter_email@email.com\",\n    \"reporterName\": \"John Smith\",\n    \"reporterPhone\": \"555-555-5555\",\n    \"reporterOrg\": \"Contoso\",\n    \"discloseEmail\": \"TRUE||FALSE\",\n    \"reporterNotes\": \"Sources are at liberty to elaborate on what their organization does if it's relevant to their reports as a whole.\"\n  },\n  \"reports\": [\n    {\n      \"report\": {\n        \"batchID\": \"Group/Campaign Identifier\",\n        \"relatedCases\": [ \"ID\", \"ID\", \"...\" ],\n        \"reportNotes\": \"This is a brief summary of what I have found...\",\n        \"TLP\": \"AMBER||GREEN||WHITE\",\n        \"disclosureNotes\": \"Sources are at liberty to specify additional intended limits of the sharing: these must be adhered to.\",\n        \"threats\":  [\n          {\n            \"threat\": {\n              \"threatType\": \"Activity||Content\",\n              \"threatSubType\": \"CNC||FRAUD||DOS||SPAM||MALWARE||INTRUSION_ATTEMPT||PORT_SCAN||WEB_CRAWL||PHISHING||THREAT_TYPE_UNSPECIFIED\",\n              \"sampleType\":\"Base64\",\n              \"sourceIp\": \"1.1.1.1\",\n              \"destinationIp\": \"2.2.2.2\",\n              \"sourcePort\": \"PORT\",\n              \"destinationPort\": \"PORT\",\n              \"sourceUrl\": \"URL\",\n              \"destinationUrl\": \"URL\",\n              \"protocol\": \"PROTOCOL_NUMBER\",\n              \"byteCount\": \"BYTES\",\n              \"packetCount\": \"PACKETS\",\n              \"date\": \"yyyy-mm-dd\",\n              \"time\": \"00:00:00\",\n              \"timeZone\": \"-0000\",\n              \"sample\": \"logs of observed activity; must be of type specified above\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}"
-                        }
-                    }
-                ],
-                "responses": {
-                    "202": {
-                        "description": "Accepted"
-                    },
-                    "400": {
-                        "description": "Bad Request"
-                    }
-                }
-            }
-        }
-    },
-    "securityDefinitions": {
-        "apiKeyHeader": {
-            "type": "apiKey",
-            "name": "api-key",
-            "in": "header"
-        },
-        "apiKeyQuery": {
-            "type": "apiKey",
-            "name": "subscription-key",
-            "in": "query"
-        }
-    },
-    "definitions": {
-        "Body": {
-            "example": "{\n  \"reporterInfo\": {\n    \"reporterEmail\": \"reporter_email@email.com\",\n    \"reporterName\": \"John Smith\",\n    \"reporterPhone\": \"555-555-5555\",\n    \"reporterOrg\": \"Contoso\",\n    \"discloseEmail\": \"TRUE||FALSE\",\n    \"reporterNotes\": \"Sources are at liberty to elaborate on what their organization does if it's relevant to their reports as a whole.\"\n  },\n  \"reports\": [\n    {\n      \"report\": {\n        \"batchID\": \"Group/Campaign Identifier\",\n        \"relatedCases\": [ \"ID\", \"ID\", \"...\" ],\n        \"reportNotes\": \"This is a brief summary of what I have found...\",\n        \"TLP\": \"AMBER||GREEN||WHITE\",\n        \"disclosureNotes\": \"Sources are at liberty to specify additional intended limits of the sharing: these must be adhered to.\",\n        \"threats\":  [\n          {\n            \"threat\": {\n              \"threatType\": \"Activity||Content\",\n              \"threatSubType\": \"CNC||FRAUD||DOS||SPAM||MALWARE||INTRUSION_ATTEMPT||PORT_SCAN||WEB_CRAWL||PHISHING||THREAT_TYPE_UNSPECIFIED\",\n              \"sampleType\":\"Base64\",\n              \"sourceIp\": \"1.1.1.1\",\n              \"destinationIp\": \"2.2.2.2\",\n              \"sourcePort\": \"PORT\",\n              \"destinationPort\": \"PORT\",\n              \"sourceUrl\": \"URL\",\n              \"destinationUrl\": \"URL\",\n              \"protocol\": \"PROTOCOL_NUMBER\",\n              \"byteCount\": \"BYTES\",\n              \"packetCount\": \"PACKETS\",\n              \"date\": \"yyyy-mm-dd\",\n              \"time\": \"00:00:00\",\n              \"timeZone\": \"-0000\",\n              \"sample\": \"logs of observed activity; must be of type specified above\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}"
-        }
+    "apiKeyQuery": {
+      "type": "apiKey",
+      "name": "subscription-key",
+      "in": "query"
     }
+  },
+  "security": [
+    {
+      "apiKeyHeader": []
+    },
+    {
+      "apiKeyQuery": []
+    }
+  ],
+  "paths": {
+    "/pentest": {
+      "post": {
+        "description": "An API for submitting Azure Service customer-driven penetration testing notifications in a derivative of the CARS (Cloud Abuse Reporting Schema) as JSON",
+        "operationId": "Pentest Notification",
+        "parameters": [
+          {
+            "name": "bodyTwo",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/BodyTwo"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {}
+      }
+    },
+    "/cars": {
+      "post": {
+        "description": "An API for submitting Abuse or CERT reports in the CARS (Cloud Abuse Reporting Schema) as JSON",
+        "operationId": "CERT Report",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the body sent to the API.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "",
+            "in": "body",
+            "schema": {
+              "example": "@ECHO OFF curl -v -X POST \"https://api.msrc.microsoft.com/engage/cars\" -H \"Content-Type: application/json\" -H \"api-key: {subscription key}\" --data-ascii \"{body}\" "
+            },
+            "description": "Cloud Abuse Reporting Schema"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "curl"
+        ],
+        "responses": {}
+      }
+    },
+    "/ssi": {
+      "post": {
+        "description": "Report Service Security Issues (SSI)",
+        "operationId": "SSI",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Additional header",
+            "type": "string",
+            "enum": [
+              "application/json"
+            ]
+          },
+          {
+            "name": "Cache-Control",
+            "in": "header",
+            "description": "Disable caching",
+            "type": "string",
+            "default": "no-cache",
+            "enum": [
+              "no-cache"
+            ]
+          },
+          {
+            "name": "Ocp-Apim-Trace",
+            "in": "header",
+            "description": "Enable request tracing",
+            "type": "string",
+            "enum": [
+              "true"
+            ]
+          },
+          {
+            "name": "api-key",
+            "in": "header",
+            "description": "Subscription key",
+            "type": "string",
+            "default": " *******************",
+            "enum": [
+              " *******************"
+            ]
+          },
+          {
+            "name": "bodyThree",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/BodyThree"
+            }
+          }
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "definitions": {
+    "Body": {
+      "example": "{\n  \"reporterInfo\": {\n  \"reporterEmail\": \"yourEmail@yourOrg.com\",\n  \"reporterName\": \"yourName\",\n  \"reporterPhone\": \"yourPhone\",\n  \"reporterOrg\": \"yourOrganization\",\n  \"discloseEmail\": \"Choose either true or false to allow microsoft to disclose your email in reports\",\n  \"reporterNotes\": \"List any notes that are relivant about you in terms of a reporter.\"\n  },\n  \"reports\": [\n    {\n      \"report\": {\n      \"reportNotes\": \"List any reports about your specific report\",\n      \"TLP\": \"Choose a valid Traffic Light Protocol color to go here\",\n      \"disclosureNotes\": \"List anything that you may need to disclose here\",\n      \"threats\": [\n        {\n          \"threat\": {\n           \"threatType\": \"Identify which type the threat is here\",\n           \"threatSubType\": \"Identify which subtype the threat is here\",\n           \"sampleType\": \"Identify your sample type here\",\n           \"sourceIp\": \"Attacking IP\",\n           \"destinationIp\": \"Attacked IP\",\n           \"sourcePort\": \"Port attacked from\",\n           \"destinationPort\": \"Port attacked\",\n           \"sourceUrl\": \"Attacking URL\",\n           \"destinationUrl\": \"Attacked URL\",\n           \"protocol\": \"Attack protocol\",\n           \"byteCount\": \"Byte count of attack\",\n           \"packetCount\": \"Packet Count of attack\",\n           \"date\": \"Date of attack\",\n           \"time\": \"Time of attack\",\n           \"timeZone\": \"Your timezone\",\n           \"sample\": \"A sample of the attack\"\n          }\n        }\n      ]\n      }\n    }\n  ]\n} "
+    },
+    "BodyTwo": {
+      "example": "{\n  \"requesterInfo\": {\n    \"contactEmail\": \"security@contoso.com\",\n    \"contactName\": \"Ben\",\n    \"contactPhone\": \"555-555-5555\"\n  },\n  \"subscriptionInfo\": {\n    \"subscriptionId\": \"00000000-0000-0000-0000-000000000000\",\n    \"subscriptionAdminEmail\": \"admin@contoso.com\"\n  },\n  \"testInfo\": {\n    \"startDate\": \"2000-01-25\",\n    \"endDate\": \"2020-01-25\",\n    \"testerIps\": [\n        \"0.0.0.0\"\n      ],\n    \"testerDnsNames\": [\n        \"pentestplatform.url\"\n      ],\n    \"testDescription\": \"Description of overall pentest\"\n  },\n  \"azureAssets\": [\n    {\n      \"azureAsset\": {\n          \"assetType\": \"WEBSITE||VIRTUAL MACHINE||SQL AZURE DB||CLOUD SERVICE\",\n          \"dnsName\": \"targetasset.cloudapp.net\",\n          \"testDescription\": \"vulnerability scan of the cloudapp asset\",\n          \"toolingDescription\": \"pentest tool x\"\n        }\n    }\n  ],\n  \"pentestAcks\": {\n    \"standardTests\": \"TRUE\",\n    \"agreeToTerms\": \"TRUE\",\n    \"noProhibTests\": \"TRUE\"\n  }\n}"
+    },
+    "BodyThree": {
+      "example": "{ \"reporterInfo\": { \"reporterEmail\": \"yourName@youremail.com\", \"reporterName\": \"yourName\", \"reporterPhone\": \"yourPhone\", \"reporterOrg\": \"yourOrg\", \"discloseEmail\": \"TRUE\", \"reporterNotes\": \"notesAboutYou\"   },  \"issues\": [ {  \"issue\": { \"batchID\": \"issueBatchID\", \"relatedCases\": \"anyRelatedCases\", \"issueType\": \"injection\", \"issueNotes\": \"notesAboutIssue\", \"sampleType\": \"sampleType\", \"url\": \"url.com\", \"sample\": \"yourSample\", \"piiPresent\": \"TRUE\", \"piiDescription\": \"PIIDescription\", \"publiclyKnown\": \"TRUE\", \"publicUrl\": \"publicUrl.com\", \"isWebApp\": \"TRUE\" } } ] }"
+    }
+  }
 }
