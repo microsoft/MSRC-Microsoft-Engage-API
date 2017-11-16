@@ -1,7 +1,7 @@
 
 
 # Welcome
-Microsoft provides APIs for an automation of submitting various security reports. The Engage API  is a great place to report Abuse, Penetration Testing activity or submit Service Security Issues.  The Portal (https://portal.msrc.microsoft.com/en-us/engage) is where individual reports should be submitted.  To submit bulk reports, you may waht to call the Engage API directly on the developer portal (https://portal.msrc.microsoft.com/en-us/developer).
+Microsoft provides APIs for automation of submitting various security reports. The Engage API  is a great place to report Abuse, Penetration Testing activity or submit Service Security Issues.  The Portal (https://portal.msrc.microsoft.com/en-us/engage) is where individual reports should be submitted.  To submit bulk reports, you may want to call the Engage API directly on the developer portal (https://portal.msrc.microsoft.com/en-us/developer).
 
 This project contains sample code and documentation for the Microsoft 
 Engage API (https://portal.msrc.microsoft.com/en-us/developer), including:
@@ -20,6 +20,8 @@ Uploaded C#, Python and Ruby code samples as well as CARS Swagger file.
 Updated swagger.json and added swagger.yaml.  Uploaded Powershell Module.
 
 Added Curl, ObjC, Java, JavaScript, and PHP code examples.
+
+Uploaded Pentest and SSI Example Code.
 
 # Contributing
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
