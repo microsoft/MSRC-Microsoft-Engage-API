@@ -8,7 +8,6 @@ Engage API](https://portal.msrc.microsoft.com/en-us/developer). The docs folder 
 
 1. **CARS**: report suspected cyberattacks or abuse originating from Microsoft online services, such as Microsoft Azure, Bing, Outlook, OneDrive, and Office 365.
 2. **Pentest**: optionally notify Microsoft of planned penetration testing of your Azure assets.
-3. **SSI**: report Microsoft Service Security Issues, such as misconfigurations, vulnerabilities, and other security-related issues.
 
 # API Keys
 The Engage API requires an API key. To obtain one, please log into the [MSRC Portal](https://portal.msrc.microsoft.com/) and obtain the key from the Developer tab. Currently, generating an API key requires an @outlook.com, @live.com, or @microsoft.com email address.
