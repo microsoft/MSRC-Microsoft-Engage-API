@@ -4,10 +4,10 @@
 The Microsoft Security Response Center (MSRC) provides the Engage API to allow automated submission of various security reports: abuse or attacks originating from Microsoft online services, planned penetration testing of Azure assets, or security vulnerabilities in Microsoft products and services. The [MSRC Portal](https://portal.msrc.microsoft.com/en-us/engage) provides additional documentation about this API and information about this processes, as well as a graphical user interface ideal for submitting individual reports. This API provides a route for submitting bulk reports programmatically.
 
 This repository contains sample code and documentation for the [MSRC 
-Engage API](https://portal.msrc.microsoft.com/en-us/developer). The docs folder contains the API definition in the OpenAPI (Swagger) 2.0 specification. The src folder contains sample client code for the three endpoints, which are:
+Engage API](https://portal.msrc.microsoft.com/en-us/developer). The docs folder contains the API definition in the OpenAPI (Swagger) 2.0 specification. The src folder contains sample client code for the two endpoints, which are:
 
-1. **CARS**: report suspected cyberattacks or abuse originating from Microsoft online services, such as Microsoft Azure, Bing, Outlook, OneDrive, and Office 365.
-2. **Pentest**: optionally notify Microsoft of planned penetration testing of your Azure assets.
+- **CARS**: report suspected cyberattacks or abuse originating from Microsoft online services, such as Microsoft Azure, Bing, Outlook, OneDrive, and Office 365.
+- **Pentest**: optionally notify Microsoft of planned penetration testing of your Azure assets.
 
 # API Keys
 The Engage API requires an API key. To obtain one, please log into the [MSRC Portal](https://portal.msrc.microsoft.com/) and obtain the key from the Developer tab. Currently, generating an API key requires an @outlook.com, @live.com, or @microsoft.com email address.
