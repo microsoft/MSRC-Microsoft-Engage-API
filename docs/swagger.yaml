@@ -1,146 +1,402 @@
 swagger: '2.0'
 info:
-  version: '1.0'
-  title: MSRC Engage API
+  version: v1
+  title: MSRC Public API
+  description: "This RESTful API can be used to engage the Microsoft Security Response
+    Center (MSRC) in the following ways:\r\n\r\n- Get security update summaries and
+    details using the [Common Vulnerability Reporting Framework](https://www.icasi.org/cvrf)
+    (CVRF).\r\n\r\n- Report suspected cyberattacks or abuse originating from Microsoft
+    Online Services.\r\n\r\n- Notify Microsoft of any planned penetration tests against
+    your Azure assets.\r\n\r\nSample client code is available on the [MSRC Engage](https://github.com/Microsoft/MSRC-Microsoft-Engage-API)
+    \r\nGithub repositories."
 host: api.msrc.microsoft.com
-basePath: /engage
+basePath: "/engage"
 schemes:
-  - https
-security:
-  - apiKeyHeader: []
-  - apiKeyQuery: []
+- https
 paths:
-  /pentest:
+  "/cars":
     post:
-      description: An API for submitting Azure Service customer-driven penetration testing notifications in a derivative of the CARS (Cloud Abuse Reporting Schema) as JSON
-      operationId: Pentest Notification
+      tags:
+      - Engage the Microsoft Security Response Center (MSRC)
+      summary: Submit an abuse report
+      description: "Submit reports to Microsoft's Computer Emergency Response Team
+        (CERT) using the Common Abuse Reporting System (CARS).\r\nThis action is to
+        report suspected cyberattacks or abuse originating from Microsoft Online Services,\r\nsuch
+        as Azure, Bing, Outlook, OneDrive, and Office 365. This includes malicious
+        network activity\r\noriginating from Microsoft IP addresses. It also includes
+        distribution of malicious content or other\r\nillicit material through Microsoft
+        Online Services."
+      operationId: Cars_PostCarsReport
       consumes:
-        - application/json
+      - application/json
+      produces:
+      - application/json
+      - text/json
       parameters:
-        - in: body
-          name: body
-          description: Derivation of the Cloud Abuse Reporting Schema
-          required: false
-          schema:
-            $ref: '#/definitions/Body'
+      - name: carsDto
+        in: body
+        description: CARS-formatted abuse report
+        required: true
+        schema:
+          "$ref": "#/definitions/CarsDto"
+      - name: api-version
+        in: query
+        description: API version (yyyy)
+        required: false
+        type: string
       responses:
         '202':
-          description: Accepted
-        '400' :
+          description: Submitted Successfully
+        '400':
           description: Bad Request
-  /cars:
+        '401':
+          description: Unauthorized
+        '415':
+          description: Unsupported Media Type
+        '500':
+          description: Internal Server Error
+  "/pentest":
     post:
-      description: An API for submitting Abuse or CERT reports in the CARS (Cloud Abuse Reporting Schema) as JSON
-      operationId: CERT Report
+      tags:
+      - Engage the Microsoft Security Response Center (MSRC)
+      summary: Submit a penetration testing notification
+      description: "Submit customer-driven Azure Penetration Testing Notifications
+        to the Microsoft Security Response Center (MSRC).\r\n\r\nThis action allows
+        you to notify Microsoft of any planned penetration tests against your Azure
+        assets.\r\nWhile doing so is optional, Microsoft will review submissions associated
+        with your subscription in the course of troubleshooting issues.\r\nThis request
+        information also helps us collect metrics which we use to improve the security
+        and availability of the Azure Platform.\r\nThis request does *not* serve to
+        enable or disable any platform security measures or alter any security detections.\r\nMany
+        security controls such as Azure Network Security groups are under direct customer
+        control.\r\nAutomated platform security measures such as those which protect
+        Software as a Service (SaaS) applications cannot be disabled.\r\n\r\nPenetration
+        Test Notification Process:\r\n\r\n1. **Request**.\r\nPlease provide as complete
+        data as you can. Should your plans change, simply submit a new notification
+        with updated information.\r\nThis will supersede your previous submission.\r\n\r\n2.
+        **Acknowledgment**.\r\nOnce the form is submitted, the Azure Safeguards Team
+        will send an automated acknowledgement to the provided contact email\r\n*and*
+        the owners of the subscription. This email is your one and only confirmation
+        from Microsoft.\r\n\r\n3. **Testing**.\r\nYou may only conduct tests which
+        abide by the [Microsoft Cloud Unified Penetration Testing Rules of Engagement](https://technet.microsoft.com/en-us/mt784683).\r\nNo
+        exceptions to the rules of engagement will be granted.\r\n\r\nIf you have
+        other questions about penetration testing or the status of your notification,
+        please contact [Azure Support](https://www.microsoft.com/windowsazure/support/)."
+      operationId: Pentest_PostPentestRequest
       consumes:
-        - application/json
+      - application/json
+      produces:
+      - application/json
+      - text/json
       parameters:
-        - in: body
-          name: body
-          description: Cloud Abuse Reporting Schema
-          required: true
-          schema:
-            example: |-
-              {
-                "reporterInfo": {
-                  "reporterEmail": "reporter_email@email.com",
-                  "reporterName": "John Smith",
-                  "reporterPhone": "555-555-5555",
-                  "reporterOrg": "Contoso",
-                  "discloseEmail": "TRUE||FALSE",
-                  "reporterNotes": "Sources are at liberty to elaborate on what their organization does if it's relevant to their reports as a whole."
-                },
-                "reports": [
-                  {
-                    "report": {
-                      "batchID": "Group/Campaign Identifier",
-                      "relatedCases": [ "ID", "ID", "..." ],
-                      "reportNotes": "This is a brief summary of what I have found...",
-                      "TLP": "AMBER||GREEN||WHITE",
-                      "disclosureNotes": "Sources are at liberty to specify additional intended limits of the sharing: these must be adhered to.",
-                      "threats":  [
-                        {
-                          "threat": {
-                            "threatType": "Activity||Content",
-                            "threatSubType": "CNC||FRAUD||DOS||SPAM||MALWARE||INTRUSION_ATTEMPT||PORT_SCAN||WEB_CRAWL||PHISHING||THREAT_TYPE_UNSPECIFIED",
-                            "sampleType":"Base64",
-                            "sourceIp": "1.1.1.1",
-                            "destinationIp": "2.2.2.2",
-                            "sourcePort": "PORT",
-                            "destinationPort": "PORT",
-                            "sourceUrl": "URL",
-                            "destinationUrl": "URL",
-                            "protocol": "PROTOCOL_NUMBER",
-                            "byteCount": "BYTES",
-                            "packetCount": "PACKETS",
-                            "date": "yyyy-mm-dd",
-                            "time": "00:00:00",
-                            "timeZone": "-0000",
-                            "sample": "logs of observed activity; must be of type specified above"
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
+      - name: pentestDto
+        in: body
+        description: penetration testing notification
+        required: true
+        schema:
+          "$ref": "#/definitions/PentestDto"
+      - name: api-version
+        in: query
+        description: API version (yyyy)
+        required: false
+        type: string
       responses:
         '202':
-          description: Accepted
-        '400' :
+          description: Submitted Successfully
+        '400':
           description: Bad Request
+        '401':
+          description: Unauthorized
+        '415':
+          description: Unsupported Media Type
+        '500':
+          description: Internal Server Error
+definitions:
+  PentestDto:
+    required:
+    - testSubmission
+    - requesterInfo
+    - subscriptionInfo
+    - testInfo
+    - pentestAcks
+    type: object
+    properties:
+      testSubmission:
+        description: is this a test submission? If so, the API will validate the input
+          but won't submit it to MSRC for action
+        type: boolean
+      requesterInfo:
+        "$ref": "#/definitions/RequesterInfo"
+        description: information about the requester (whoever is doing the submitting)
+      subscriptionInfo:
+        "$ref": "#/definitions/SubscriptionInfo"
+        description: information about the Azure subscription
+      testInfo:
+        "$ref": "#/definitions/TestInfo"
+        description: information about the planned pentesting
+      pentestAcks:
+        "$ref": "#/definitions/PentestTermsAcknowledgement"
+        description: acknowledgement of the [Microsoft Cloud Unified Penetration Testing
+          Rules of Engagement](https://technet.microsoft.com/en-us/mt784683)
+    example:
+      testSubmission: true
+      requesterInfo:
+        contactEmail: someone@example.com
+      subscriptionInfo:
+        subscriptionId: ddacfc48-f4a4-46e5-ba78-0a2d4f19591f
+      testInfo:
+        startDate: '2000-01-20'
+        endDate: '2000-01-30'
+        testDescription: This is example penetration test information.
+      pentestAcks:
+        agreeToTerms: 'true'
+  RequesterInfo:
+    required:
+    - contactEmail
+    type: object
+    properties:
+      contactEmail:
+        description: requester email
+        type: string
+  SubscriptionInfo:
+    required:
+    - subscriptionId
+    type: object
+    properties:
+      subscriptionId:
+        description: Azure subscription ID
+        type: string
+  TestInfo:
+    required:
+    - startDate
+    - endDate
+    - testDescription
+    type: object
+    properties:
+      startDate:
+        description: date testing will commence
+        type: string
+      endDate:
+        description: date testing will end
+        type: string
+      testDescription:
+        description: detailed summary of the planned testing, including types of tests
+          and a list of targeted assets (IP or FQDN)
+        type: string
+  PentestTermsAcknowledgement:
+    required:
+    - agreeToTerms
+    type: object
+    properties:
+      agreeToTerms:
+        description: do you agree to the terms?
+        type: string
+  CarsDto:
+    required:
+    - testSubmission
+    - reporterInfo
+    - reports
+    type: object
+    properties:
+      testSubmission:
+        description: is this a test submission? If so, the API will validate the input
+          but won't submit it to MSRC for action
+        type: boolean
+      carsAdvancedCheck:
+        description: do the reports include detailed fields? This can be false only
+          for form submissions (API users should ignore it)
+        type: boolean
+      reporterInfo:
+        "$ref": "#/definitions/ReporterInfo"
+        description: information about the reporter (whoever is doing the submitting)
+      reports:
+        description: reports of abuse
+        type: array
+        items:
+          "$ref": "#/definitions/Report"
+    example:
+      testSubmission: true
+      carsAdvancedCheck: true
+      reporterInfo:
+        reporterEmail: someone@contoso.com
+        reporterName: First Last
+        reporterPhone: 000-000-0000
+        reporterOrg: Contoso
+        discloseEmail: 'true'
+        reporterNotes: This is example reporter information.
+      reports:
+      - report:
+          batchID: campaign X
+          relatedCases:
+          - TODO
+          reportNotes: This is an example abuse report.
+          tlp: WHITE
+          disclosureNotes: Share freely.
+          threats:
+          - threat:
+              threatType: activity
+              threatSubType: spam
+              sourceIp: 1.1.1.1
+              destinationIp: 2.2.2.2
+              sourcePort: '1'
+              destinationPort: '2'
+              protocol: '0'
+              byteCount: '1'
+              packetCount: '1'
+              date: '2000-01-20'
+              time: '00:00:00'
+              timeZone: "-00:00"
+              sample: This is example activity threat information.
+              sampleType: text/plain
+          - threat:
+              threatType: content
+              threatSubType: malware
+              sourceUrl: evil.com
+              destinationUrl: example.com
+              protocol: '0'
+              date: '2000-01-20'
+              time: '00:00:00'
+              timeZone: "-00:00"
+              sample: This is example content threat information.
+              sampleType: text/plain
+  ReporterInfo:
+    required:
+    - reporterEmail
+    - reporterName
+    - discloseEmail
+    - reporterNotes
+    type: object
+    properties:
+      reporterEmail:
+        description: reporter email address, may be used for further correspondence
+        type: string
+      reporterName:
+        description: reporter name
+        type: string
+      reporterPhone:
+        description: reporter phone number
+        type: string
+      reporterOrg:
+        description: reporter organization
+        type: string
+      discloseEmail:
+        description: allow response organization to share reporter email with an external
+          incident resolver as appropriate?
+        type: string
+      reporterNotes:
+        description: any other relevant information about the reporter or reporter
+          organization
+        type: string
+  Report:
+    required:
+    - report
+    type: object
+    properties:
+      report:
+        "$ref": "#/definitions/Report1"
+        description: report of abuse
+  Report1:
+    required:
+    - reportNotes
+    - threats
+    type: object
+    properties:
+      batchID:
+        description: tag and group reports
+        type: string
+      relatedCases:
+        description: IDs of known related cases
+        type: array
+        items:
+          type: string
+      reportNotes:
+        description: a brief summary of what occurred
+        type: string
+      TLP:
+        description: "[Traffic Light Protocol](https://www.us-cert.gov/tlp) color
+          (RED, AMBER, GREEN, or WHITE) to regulate the level of\r\ndisclosure"
+        type: string
+      disclosureNotes:
+        description: any additional limits on disclosure
+        type: string
+      threats:
+        description: instances of abuse
+        type: array
+        items:
+          "$ref": "#/definitions/Threat"
+  Threat:
+    required:
+    - threat
+    type: object
+    properties:
+      threat:
+        "$ref": "#/definitions/Threat1"
+        description: instance of abuse
+  Threat1:
+    required:
+    - threatType
+    - threatSubType
+    - date
+    - time
+    - timeZone
+    type: object
+    properties:
+      threatType:
+        description: 'threat type: activity or content'
+        type: string
+      threatSubType:
+        description: threat subtype (depends on threat type)
+        type: string
+      sourceIp:
+        description: IP address sending unwanted traffic (required for activity threats)
+        type: string
+      destinationIp:
+        description: IP address receiving unwanted traffic (required for activity
+          threats)
+        type: string
+      sourcePort:
+        description: port sending unwanted traffic
+        type: string
+      destinationPort:
+        description: port receiving unwanted traffic
+        type: string
+      sourceUrl:
+        description: URL hosting abusive content (required for content threats)
+        type: string
+      destinationUrl:
+        description: URL receiving abusive content (required for content threats)
+        type: string
+      protocol:
+        description: "[internet protocol number](http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)
+          of the protocol being used to send or serve abusive traffic or data"
+        type: string
+      byteCount:
+        description: total number of bytes received for reported traffic (activity
+          threats only)
+        type: string
+      packetCount:
+        description: total number of packets received for reported traffic (activity
+          threats only)
+        type: string
+      date:
+        description: date of abuse
+        type: string
+      time:
+        description: time of abuse
+        type: string
+      timeZone:
+        description: reporter time zone
+        type: string
+      sample:
+        description: sample data/artifacts relating to abuse
+        type: string
+      sampleType:
+        description: "[Media Type](https://www.iana.org/assignments/media-types/media-types.xhtml)
+          of sample (required if sample is provided)"
+        type: string
 securityDefinitions:
   apiKeyHeader:
     type: apiKey
+    description: API Key Header
     name: api-key
     in: header
-  apiKeyQuery:
-    type: apiKey
-    name: subscription-key
-    in: query
-definitions:
-  Body:
-    example: |-
-      {
-        "reporterInfo": {
-          "reporterEmail": "reporter_email@email.com",
-          "reporterName": "John Smith",
-          "reporterPhone": "555-555-5555",
-          "reporterOrg": "Contoso",
-          "discloseEmail": "TRUE||FALSE",
-          "reporterNotes": "Sources are at liberty to elaborate on what their organization does if it's relevant to their reports as a whole."
-        },
-        "reports": [
-          {
-            "report": {
-              "batchID": "Group/Campaign Identifier",
-              "relatedCases": [ "ID", "ID", "..." ],
-              "reportNotes": "This is a brief summary of what I have found...",
-              "TLP": "AMBER||GREEN||WHITE",
-              "disclosureNotes": "Sources are at liberty to specify additional intended limits of the sharing: these must be adhered to.",
-              "threats":  [
-                {
-                  "threat": {
-                    "threatType": "Activity||Content",
-                    "threatSubType": "CNC||FRAUD||DOS||SPAM||MALWARE||INTRUSION_ATTEMPT||PORT_SCAN||WEB_CRAWL||PHISHING||THREAT_TYPE_UNSPECIFIED",
-                    "sampleType":"Base64",
-                    "sourceIp": "1.1.1.1",
-                    "destinationIp": "2.2.2.2",
-                    "sourcePort": "PORT",
-                    "destinationPort": "PORT",
-                    "sourceUrl": "URL",
-                    "destinationUrl": "URL",
-                    "protocol": "PROTOCOL_NUMBER",
-                    "byteCount": "BYTES",
-                    "packetCount": "PACKETS",
-                    "date": "yyyy-mm-dd",
-                    "time": "00:00:00",
-                    "timeZone": "-0000",
-                    "sample": "logs of observed activity; must be of type specified above"
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
