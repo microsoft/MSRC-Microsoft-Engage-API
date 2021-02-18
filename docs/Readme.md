@@ -1,3 +1,0 @@
-<h2>Documentation</h2>
-
-This documentation exists to help developers implement client requests and response handling for this API. It uses the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) 2.0, also known as Swagger 2.0, to create a machine-readable definition in JSON and YAML formats. A clean and interactive UI for this API can be auto-generated using SmartBear's Swagger UI [Live Demo](https://petstore.swagger.io); simply paste the [raw API definition](https://raw.githubusercontent.com/Microsoft/MSRC-Microsoft-Engage-API/master/docs/swagger.json) into the top bar and click "explore." You can check out https://swagger.io to find more tooling for this specification.
