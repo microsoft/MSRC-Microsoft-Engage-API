@@ -13,14 +13,13 @@
         };
       
         $.ajax({
-            url: "https://api.msrc.microsoft.com/engage/cars?" + $.param(params),
+            url: "https://api.msrc.microsoft.com/report/v2.0/abuse",
             beforeSend: function(xhrObj){
                 // Request headers
                 xhrObj.setRequestHeader("Content-Type","application/json");
-                xhrObj.setRequestHeader("api-key","{subscription key}");
             },
             type: "POST",
-            // Request body
+            // Data model documentation at https://msrc.microsoft.com/report/developer
             data: "{body}",
         })
         .done(function(data) {
