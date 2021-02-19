@@ -16,16 +16,14 @@ public class JavaSample
 
         try
         {
-            URIBuilder builder = new URIBuilder("https://api.msrc.microsoft.com/engage/cars");
+            URIBuilder builder = new URIBuilder("https://api.msrc.microsoft.com/report/v2.0/abuse");
 
 
             URI uri = builder.build();
             HttpPost request = new HttpPost(uri);
             request.setHeader("Content-Type", "application/json");
-            request.setHeader("api-key", "{subscription key}");
 
-
-            // Request body
+            // Data model documentation at https://msrc.microsoft.com/report/developer
             StringEntity reqEntity = new StringEntity("{body}");
             request.setEntity(reqEntity);
 

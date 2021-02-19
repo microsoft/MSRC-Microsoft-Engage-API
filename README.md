@@ -1,9 +1,11 @@
 
 
 # Welcome
-The Microsoft Security Response Center (MSRC) provides the Engage API to allow automated submission of abuse or attacks originating from Microsoft online services. The [MSRC Abuse Reporting Portal](https://msrc.microsoft.com/report/abuse) provides additional documentation about this API and information about this processes, as well as a graphical user interface ideal for submitting individual reports.
+The Microsoft Security Response Center (MSRC) provides a programmatic API to enable automated reporting of abuse or attacks originating from Microsoft online services. The [MSRC Abuse Reporting Portal](https://msrc.microsoft.com/report/abuse) provides a graphical user interface ideal and additional documentation.
 
-This repository contains sample code for the [MSRC Abuse Reporting API](https://msrc.microsoft.com/report/developer), documentation including OpenAPI (Swagger) specification can be found at our [Developer page](https://msrc.microsoft.com/report/developer). 
+This repository contains code samples demonstrating how you could use the [MSRC Abuse Reporting API](https://msrc.microsoft.com/report/developer) to report suspected cyberattacks or abuse originating from Microsoft Online Services, such as Microsoft Azure, Bing, Outlook, OneDrive, Office 365, etc. This includes malicious network activity originating from a Microsoft IP addresses. It also includes distribution of malicious content or other illicit or illegal material through a Microsoft Online Service.
+
+View data model and API documentation at our [Developer page](https://msrc.microsoft.com/report/developer).
 
 # Change Log
 2021-02-18: point to new interactive Developer documentation page, removed deprecated Pentest API
